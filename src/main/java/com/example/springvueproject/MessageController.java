@@ -1,5 +1,6 @@
 package com.example.springvueproject;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,13 +11,12 @@ import java.util.List;
 
 public class MessageController {
 
+    @Autowired
+    private MessageService messageService;
+
     @RequestMapping("/messages")
     public List<Message> getAllMessages(){
-        return Arrays.asList(
-                new Message("Nils", "Hello! This is message."),
-                new Message("Nils", "It feels like I'm talking to myself..."),
-                new Message("Nils", "Can't think of anything to say.")
-        );
+        return messageService.getAllMessages();
     }
 
 }
