@@ -15,22 +15,17 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
-    @RequestMapping("/messages")
+    //@RequestMapping("/messages")
     public List<Message> getAllMessages(){
         return messageService.getAllMessages();
     }
 
-    @RequestMapping(method= RequestMethod.POST, value="/messages")
+    //@RequestMapping(method= RequestMethod.POST, value="/messages")
     public void addMessage(@RequestBody Message message){
         messageService.addMessage(message);
     }
 
-    @RequestMapping(method= RequestMethod.PUT, value="/messages")
-    public void updateMessage(@RequestBody Message message){
-        messageService.updateMessage(message);
-    }
-
-    @RequestMapping(method= RequestMethod.DELETE, value="/messages")
+    //@RequestMapping(method= RequestMethod.DELETE, value="/messages")
     public void removeMessage(@RequestBody Message message){
         messageService.removeMessage(message);
     }
