@@ -18,5 +18,6 @@ public class MessageService {
     }
 
     public void insert(Message message) {
+        messageRepository.save(message);
     }
 }
