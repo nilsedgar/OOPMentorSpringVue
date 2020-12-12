@@ -25,4 +25,14 @@ public class MessageController {
         messageService.addMessage(message);
     }
 
+    @RequestMapping(method= RequestMethod.PUT, value="/messages")
+    public void updateMessage(@RequestBody Message message){
+        messageService.updateMessage(message);
+    }
+
+    @RequestMapping(method= RequestMethod.DELETE, value="/messages")
+    public void removeMessage(@RequestBody Message message){
+        messageService.removeMessage(message);
+    }
+
 }
