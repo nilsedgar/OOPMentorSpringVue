@@ -16,7 +16,7 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
-    @GetMapping("/")
+    @GetMapping(value = "/")
     public String index(){
         return "index";
     }
