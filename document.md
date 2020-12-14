@@ -27,7 +27,7 @@ The method takes the body of the http-Post-request as an argument and parses thi
 a Message object. The method then calls messageService.addMessage which adds the object
 the <List>messages.
 
-#**NEW BRANCH**
+#**ENTITY BRANCH**
 
 Updated project is entirely within testpackage folder. This was mainly to experiment with 
 using packages and learning about project architecture. It is currently organized as a
