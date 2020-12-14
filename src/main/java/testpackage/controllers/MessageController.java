@@ -23,9 +23,10 @@ public class MessageController {
     }
 
     @GetMapping("/messages")
-    public List<Message> messages(){
+    public List<Message> getAllMessages(){
         return messageService.getAllMessages();
     }
+
 
     @PostMapping("/message")
     public void sendMessage(@RequestBody Message message){
@@ -33,6 +34,12 @@ public class MessageController {
             message.setDateSent(new Date());
         }
         messageService.insert(message);
+    }
+
+
+
+    public void deleteMessage(Long id){
+
     }
 
 }
