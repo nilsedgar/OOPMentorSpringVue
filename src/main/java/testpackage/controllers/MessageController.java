@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import testpackage.entities.Message;
 import testpackage.services.MessageService;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -28,6 +29,9 @@ public class MessageController {
 
     @PostMapping("/message")
     public void sendMessage(@RequestBody Message message){
+        if(message.getDateSent() == null) {
+            message.setDateSent(new Date());
+        }
         messageService.insert(message);
     }
 
