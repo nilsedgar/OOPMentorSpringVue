@@ -41,5 +41,5 @@ This new branch has switched the underlying functionality of the application. It
 @Service now calls the @Repository interface which has the findAll() method which returns
 all tables and the save() method which parses a JPA to a table and saves it in the database.
 
-testpackage.entities.Message uses a *Long* @Id with generatedValue=AUTO. This is opposed to
+com.example.springvueproject.entities.Message uses a *Long* @Id with generatedValue=AUTO. This is opposed to
 using a *String* as @Id which can be used to map Get-requests to fetch individual tables/object.
