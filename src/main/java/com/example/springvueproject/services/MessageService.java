@@ -1,9 +1,9 @@
-package testpackage.services;
+package com.example.springvueproject.services;
 
+import com.example.springvueproject.entities.Message;
+import com.example.springvueproject.repositories.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import testpackage.entities.Message;
-import testpackage.repositories.MessageRepository;
 
 import java.util.List;
 

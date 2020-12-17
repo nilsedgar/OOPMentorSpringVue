@@ -1,4 +1,4 @@
-package testpackage.entities;
+package com.example.springvueproject.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
