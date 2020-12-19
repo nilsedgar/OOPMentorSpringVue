@@ -15,11 +15,6 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
-    @GetMapping("/index")
-    public String index(){
-        return "index";
-    }
-
     @GetMapping("/messages")
     public List<Message> getAllMessages(){
         return messageService.getAllMessages();
