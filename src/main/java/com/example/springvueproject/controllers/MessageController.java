@@ -3,14 +3,11 @@ package com.example.springvueproject.controllers;
 import com.example.springvueproject.services.MessageService;
 import com.example.springvueproject.entities.Message;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class MessageController {
@@ -28,6 +25,16 @@ public class MessageController {
         return messageService.getAllMessages();
     }
 
+    @GetMapping("/messages/{id}")
+    public Optional<Message> getMessageById(@PathVariable Long id){
+        return messageService.getMessageById(id);
+    }
+
+    @DeleteMapping("/messages/{id}")
+    public void deleteMessageById(@PathVariable Long id){
+        messageService.deleteMessageById(id);
+    }
+
     @PostMapping("/message")
     public void sendMessage(@RequestBody Message message){
         if(message.getDateSent() == null) {
@@ -38,9 +45,7 @@ public class MessageController {
 
 
 
-    public void deleteMessage(Long id){
 
-    }
 
     //@RequestMapping(value = "/message", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 
