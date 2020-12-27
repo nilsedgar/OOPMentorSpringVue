@@ -38,11 +38,4 @@ public class MessageController {
         messageService.insert(message);
     }
 
-
-
-
-
-    //@RequestMapping(value = "/message", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-
-
 }

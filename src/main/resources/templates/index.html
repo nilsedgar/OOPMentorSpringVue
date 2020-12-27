@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,62 @@
 </head>
 <body>
 <h1>
-    Testing testing
+    Chat
 </h1>
+<div id="app">
+    <form @submit="sendMessage">
+        <p>
+        <label>Your name:
+            <input type="text" id="inputName" v-model="inputName">
+        </label>
+        </p>
+        <p>
+        <label>Message:
+            <input type="text" id="inputMessage" v-model="inputMessage">
+        </label>
+        </p>
+        <button type="submit">Send</button>
+    </form>
+    <ul>
+        <li v-for="message in messages">
+            <h3>{{message.senderName}}</h3>
+            <p>{{message.messageText}}</p><button v-on:click="deleteMessage(message.id)">Del</button>
+        </li>
+    </ul>
+</div>
 </body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data() {
+            return {
+                messages: [],
+                inputName: '',
+                inputMessage: ''
+            };
+        },
+        mounted() {
+            this.fetchPosts();
+            },
+        methods : {
+            fetchPosts(){
+                axios.get("/messages").then(function(response){
+                    this.messages = response.data;
+                }.bind(this));
+            },
+            sendMessage(){
+                axios.post("/message", {
+                    senderName: this.inputName,
+                    messageText: this.inputMessage
+                })
+            },
+            deleteMessage(id){
+                axios.delete("/messages/"+id)
+                window.location.reload()
+            }
+        }
+    })
+</script>
 </html>
