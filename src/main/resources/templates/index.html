@@ -7,10 +7,10 @@
     <title>OOPMentorSpringVue</title>
 </head>
 <body>
-<h1>
-    Chat
-</h1>
 <div id="app">
+    <h1 class="chatHeader">
+        Chat
+    </h1>
     <form @submit="sendMessage">
         <p>
         <label>Your name:
@@ -24,13 +24,39 @@
         </p>
         <button type="submit">Send</button>
     </form>
-    <ul>
-        <li v-for="message in messages">
-            <h3>{{message.senderName}}</h3>
-            <p>{{message.messageText}}</p><button v-on:click="deleteMessage(message.id)">Del</button>
-        </li>
-    </ul>
+        <span v-for="message in messages">
+            <p class="senderName">{{message.senderName}} Says:</p>
+            <p class="messageText">{{message.messageText}}</p>
+            <button class="delButton" v-on:click="deleteMessage(message.id)">X</button>
+        </span>
+
 </div>
+<style>
+    body{
+        background-color: bisque;
+        box-sizing: border-box;
+        width: 100%;
+        border: solid #5B6DCD 10px;
+        padding: 5px;
+    }
+    .chatHeader{
+        color: forestgreen;
+        font-size: 70px;
+    }
+    .delButton{
+        background-color: red;
+        text-color: black;
+        font-weight: bold;
+        display: inline;
+    }
+    .senderName{
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .messageText{
+        display: inline;
+    }
+</style>
 </body>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
