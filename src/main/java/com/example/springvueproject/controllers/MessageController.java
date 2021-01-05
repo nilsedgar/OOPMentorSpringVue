@@ -3,6 +3,7 @@ package com.example.springvueproject.controllers;
 import com.example.springvueproject.services.MessageService;
 import com.example.springvueproject.entities.Message;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -32,6 +33,9 @@ public class MessageController {
 
     @PostMapping("/message")
     public void sendMessage(@RequestBody Message message){
+        if(!message.getSenderName().matches("\\A\\p{ASCII}*\\z") || !message.getMessageText().matches("\\A\\p{ASCII}*\\z")){
+            throw new RuntimeException("Wrong input!");
+        }
         if(message.getDateSent() == null) {
             message.setDateSent(new Date());
         }

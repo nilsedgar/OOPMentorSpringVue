@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <h1 class="chatHeader">
         Chat
     </h1>
+    <p th:text="${Error}"></p>
     <form @submit="sendMessage">
         <p>
         <label>Your name:
