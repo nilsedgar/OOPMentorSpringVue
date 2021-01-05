@@ -1,3 +1,5 @@
+#**OOPMentorSpringVue**
+
 @SpringBootApplication
 
 Both @RestController and @Controller handle http-requests and allow you to bind java-methods to different requests 
@@ -25,3 +27,19 @@ The method takes the body of the http-Post-request as an argument and parses thi
 a Message object. The method then calls messageService.addMessage which adds the object
 the <List>messages.
 
+#**ENTITY BRANCH**
+
+Updated project is entirely within testpackage folder. This was mainly to experiment with 
+using packages and learning about project architecture. It is currently organized as a
+package by layer structure (horizontal slice). Due to the small size of this project I
+decided that the cons of this design are outweighed by the convenience of following the same
+design as the guide I'm following. The main con of this design in my opinion is that it 
+doesn't feel object oriented. 
+
+This new branch has switched the underlying functionality of the application. It now uses
+@Entity, making Message objects parsable to tables which can be stored on the webserver. 
+@Service now calls the @Repository interface which has the findAll() method which returns
+all tables and the save() method which parses a JPA to a table and saves it in the database.
+
+com.example.springvueproject.entities.Message uses a *Long* @Id with generatedValue=AUTO. This is opposed to
+using a *String* as @Id which can be used to map Get-requests to fetch individual tables/object.

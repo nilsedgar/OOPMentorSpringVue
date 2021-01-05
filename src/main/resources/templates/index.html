@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,90 @@
     <title>OOPMentorSpringVue</title>
 </head>
 <body>
-<h1>
-    HEEEEEEEEEEEEEJ
-</h1>
+<div id="app">
+    <h1 class="chatHeader">
+        Chat
+    </h1>
+    <p th:text="${Error}"></p>
+    <form @submit="sendMessage">
+        <p>
+        <label>Your name:
+            <input type="text" id="inputName" v-model="inputName">
+        </label>
+        </p>
+        <p>
+        <label>Message:
+            <input type="text" id="inputMessage" v-model="inputMessage">
+        </label>
+        </p>
+        <button type="submit">Send</button>
+    </form>
+        <span v-for="message in messages">
+            <p class="senderName">{{message.senderName}} Says:</p>
+            <p class="messageText">{{message.messageText}}</p>
+            <button class="delButton" v-on:click="deleteMessage(message.id)">X</button>
+        </span>
+
+</div>
+<style>
+    body{
+        background-color: bisque;
+        box-sizing: border-box;
+        width: 100%;
+        border: solid #5B6DCD 10px;
+        padding: 5px;
+    }
+    .chatHeader{
+        color: forestgreen;
+        font-size: 70px;
+    }
+    .delButton{
+        background-color: red;
+        text-color: black;
+        font-weight: bold;
+        display: inline;
+    }
+    .senderName{
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .messageText{
+        display: inline;
+    }
+</style>
 </body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data() {
+            return {
+                messages: [],
+                inputName: '',
+                inputMessage: ''
+            };
+        },
+        mounted() {
+            this.fetchPosts();
+            },
+        methods : {
+            fetchPosts(){
+                axios.get("/messages").then(function(response){
+                    this.messages = response.data;
+                }.bind(this));
+            },
+            sendMessage(){
+                axios.post("/message", {
+                    senderName: this.inputName,
+                    messageText: this.inputMessage
+                })
+            },
+            deleteMessage(id){
+                axios.delete("/messages/"+id)
+                window.location.reload()
+            }
+        }
+    })
+</script>
 </html>
